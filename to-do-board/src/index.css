@@ -1,0 +1,130 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("https://img.freepik.com/free-photo/vibrant-colors-flow-abstract-wave-pattern-generated-by-ai_188544-9781.jpg");
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
+.todo {
+  border-radius: 15px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 100px;
+  box-shadow: 0 4px 8px rgba(225, 7, 7, 0.2);
+}
+
+/* Title styling */
+h1 {
+  font-weight: bolder;
+  position:sticky;
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.Add {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+input::placeholder {
+  color: #d48621;
+  font-size: 1rem;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid white;
+  color: black;
+  background-color: rgba(6, 241, 178, 0.75);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0fe81a;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+.task-section {
+  margin-top: 20px;
+  padding: 15px;
+  border-top: 2px solid #ffeb3b;
+  border-radius: 10px;
+  background: rgba(108, 106, 91, 0.4);
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Task card styling */
+.task-card {
+  background-color: #77d7d75e;
+  border: 1px solid #ea0606;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  color: rgb(252, 255, 254);
+  display: inline-block;
+  box-shadow: 0 2px 5px rgba(199, 0, 0, 0.671);
+}
+
+/* Delete button styling */
+.delete-btn {
+  background-color: rgb(254, 53, 3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background-color: rgb(219, 23, 23);
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  margin-bottom: 10px;
+}
