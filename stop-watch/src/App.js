@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 function App(){
   const [time, setTime]= useState(0);
   const [running,setRunning]= useState(false);
-   useEffect(
-    ()=>{
+   useEffect( ()=>{
       let interval;
       if(running){
         interval = setInterval(()=>{
