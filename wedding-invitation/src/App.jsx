@@ -60,28 +60,41 @@ const Lamp = ({ sideClass, scale, delay }) => {
   );
 };
 
-const LoadingScreen = ({ isLoaded }) => {
+const LoadingScreen = ({ isLoaded, onEnter }) => {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowButton(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className={`loading-wrapper ${isLoaded ? 'fade-out-loading' : ''}`}>
       <div className="loading-content">
         <div className="loading-initials">S <span className="loading-ampersand">&</span> K</div>
+        <button
+          className={`enter-button ${showButton ? 'visible' : ''}`}
+          onClick={onEnter}
+        >
+          Open Invitation
+        </button>
       </div>
     </div>
   );
 };
 
-const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const AudioPlayer = ({ isPlaying, togglePlay }) => {
   const audioRef = useRef(null);
 
-  const togglePlay = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+      } else {
+        audioRef.current.pause();
+      }
     }
-    setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying]);
 
   return (
     <div className="audio-player" onClick={togglePlay} title={isPlaying ? "Pause Music" : "Play Music"}>
@@ -134,9 +147,18 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handleEnter = () => {
+    setIsLoaded(true);
+    setIsPlaying(true);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 2500);
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e) => {
       setMousePos({
@@ -149,7 +171,6 @@ function App() {
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
@@ -157,8 +178,8 @@ function App() {
 
   return (
     <>
-      <LoadingScreen isLoaded={isLoaded} />
-      <AudioPlayer />
+      <LoadingScreen isLoaded={isLoaded} onEnter={handleEnter} />
+      <AudioPlayer isPlaying={isPlaying} togglePlay={togglePlay} />
       <div className="app-container">
         <img
           src="/bride.png"
@@ -262,7 +283,7 @@ function App() {
                 <div className="overlay-text"></div>
               </div>
               <div className="gallery-img-container">
-                <img src="/moment-2.png"onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1607065096536-ea339244ee31?auto=format&fit=crop&w=800&q=80' }} />
+                <img src="/moment-2.png" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1607065096536-ea339244ee31?auto=format&fit=crop&w=800&q=80' }} />
                 <div className="overlay-text"></div>
               </div>
               <div className="gallery-img-container span-row-2">
@@ -274,7 +295,7 @@ function App() {
                 <div className="overlay-text"></div>
               </div>
               <div className="gallery-img-container span-col-2">
-                <img src="/moment-5.png"onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80' }} />
+                <img src="/moment-5.png" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80' }} />
                 <div className="overlay-text"></div>
               </div>
               <div className="gallery-img-container span-col-2">

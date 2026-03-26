@@ -19,11 +19,18 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg-dark);
   color: var(--color-text);
   overflow-x: hidden;
+  width: 100%;
   background-image:
     linear-gradient(rgba(7, 21, 15, 0.82), rgba(7, 21, 15, 0.95)),
     url('/nadaswaram.png');
@@ -219,6 +226,14 @@ p {
 .hanging-lamp.right-2 {
   right: 28%;
   animation-duration: 5.8s;
+}
+
+@media (max-width: 768px) {
+
+  .hanging-lamp.left-2,
+  .hanging-lamp.right-2 {
+    display: none;
+  }
 }
 
 .lamp-glow {
@@ -535,6 +550,12 @@ p {
   pointer-events: none;
   z-index: 1;
   white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .monogram-bg {
+    font-size: 8rem;
+  }
 }
 
 .invitation-content {
@@ -923,6 +944,8 @@ a {
   align-items: center;
   justify-content: center;
   transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 1.5s;
+  overflow: hidden;
+  width: 100vw;
   background-image:
     linear-gradient(rgba(7, 21, 15, 0.90), rgba(7, 21, 15, 0.98)),
     url('/nadaswaram.png');
@@ -938,6 +961,57 @@ a {
 
 .loading-content {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.enter-button {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  padding: 1.2rem 3rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.enter-button:hover {
+  background: var(--color-gold);
+  color: var(--color-bg-dark);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  letter-spacing: 0.4em;
+}
+
+.enter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.enter-button:hover::before {
+  left: 100%;
 }
 
 .loading-initials {
@@ -949,6 +1023,14 @@ a {
   position: relative;
   overflow: hidden;
   padding: 0 1rem;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .loading-initials {
+    font-size: 4rem;
+  }
 }
 
 .loading-initials::after {
@@ -1125,6 +1207,13 @@ a {
   font-weight: 600;
 }
 
+.groom-card {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
 /* Gallery Collage */
 .gallery-section {
   padding: 8rem 2rem;
@@ -1261,13 +1350,21 @@ a {
     gap: 0.5rem;
   }
 
+  .name-left,
+  .name-right {
+    font-size: 2.2rem;
+    text-align: center;
+    word-break: break-word;
+  }
+
   .countdown-container {
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    padding-top: 2rem;
   }
 
   .countdown-number {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .glass-card {
@@ -1320,6 +1417,7 @@ a {
     padding: 1.5rem;
   }
 }
+
 /* Scroll Reveal Animations */
 .reveal-container {
   transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1427,18 +1525,27 @@ a {
 }
 
 @keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width: 768px) {
   .final-message-title {
     font-size: 3rem;
   }
+
   .final-message-text {
     font-size: 1rem;
   }
+
   .final-couple-img {
-    max-width: 1000px;
+    max-width: 280px;
   }
 }
